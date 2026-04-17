@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowLeft, ChevronLeft, ChevronRight, Download, Heart, RotateCw, Search, Share2, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 
 interface Photo {
@@ -112,7 +113,7 @@ const photos: Photo[] = [
   }
 ];
 
-const PhotoCard = ({ photo, index, onRemove }: { photo: Photo; index: number; onRemove?: (id: number) => void }) => {
+const PhotoCard = ({ photo, index, onRemove, onClick }: { photo: Photo; index: number; onRemove?: (id: number) => void; onClick?: () => void }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotationDeg, setRotationDeg] = useState<number>(0);
   const [naturalSize, setNaturalSize] = useState<{ w: number; h: number } | null>(null);
@@ -143,11 +144,12 @@ const PhotoCard = ({ photo, index, onRemove }: { photo: Photo; index: number; on
         opacity: springOpacity,
         scale: springScale,
       }}
-      className="relative group mb-20"
+      className="relative group mb-20 cursor-pointer"
+      onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-3xl bg-card border border-border card-light shadow-2xl">
         {/* Image */}
-        <div className="relative aspect-[4/5] overflow-hidden">
+          <div className="relative aspect-square overflow-hidden">
           <div className="w-full h-full transition-transform duration-700 group-hover:scale-105">
             <img
               key={photo.src}
@@ -176,14 +178,14 @@ const PhotoCard = ({ photo, index, onRemove }: { photo: Photo; index: number; on
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className="absolute bottom-0 left-0 right-0 p-8">
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-white text-2xl font-bold mb-2">{photo.title}</h3>
-                <p className="text-white/80 text-lg mb-4">{photo.category}</p>
+                <h3 className="text-white text-lg sm:text-2xl font-bold mb-2">{photo.title}</h3>
+                <p className="text-white/80 text-sm sm:text-lg mb-4">{photo.category}</p>
                 {photo.date && (
                   <p className="text-white/60 text-sm">{photo.date}</p>
                 )}
@@ -196,26 +198,26 @@ const PhotoCard = ({ photo, index, onRemove }: { photo: Photo; index: number; on
                 transition={{ delay: 0.4 }}
                 className="flex flex-wrap gap-2 mt-6"
               >
-                <Button size="sm" variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
+                <Button size="sm" variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-white/30 flex-1 sm:flex-none">
                   <Heart className="w-4 h-4 mr-2" />
-                  Like
+                  <span className="hidden sm:inline">Like</span>
                 </Button>
                 <Button
                   size="sm"
                   variant="secondary"
-                  className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                  className="bg-white/20 hover:bg-white/30 text-white border-white/30 flex-1 sm:flex-none"
                   onClick={(e) => {
                     e.stopPropagation();
                     setRotationDeg((prev) => (prev + 90) % 360);
                   }}
                 >
                   <RotateCw className="w-4 h-4 mr-2" />
-                  Rotate
+                  <span className="hidden sm:inline">Rotate</span>
                 </Button>
                 <Button
                   size="sm"
                   variant="secondary"
-                  className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                  className="bg-white/20 hover:bg-white/30 text-white border-white/30 flex-1 sm:flex-none"
                   onClick={(e) => {
                     e.stopPropagation();
                     try {
@@ -234,11 +236,11 @@ const PhotoCard = ({ photo, index, onRemove }: { photo: Photo; index: number; on
                   }}
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Download
+                  <span className="hidden sm:inline">Download</span>
                 </Button>
-                <Button size="sm" variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
+                <Button size="sm" variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-white/30 flex-1 sm:flex-none">
                   <Share2 className="w-4 h-4 mr-2" />
-                  Share
+                  <span className="hidden sm:inline">Share</span>
                 </Button>
               </motion.div>
             </div>
@@ -422,7 +424,7 @@ const Photos = () => {
         style={{ opacity: headerOpacity, y: headerY }}
         className="sticky top-0 z-40 glass border-b border-border/50 backdrop-blur-xl"
       >
-        <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <div className="flex items-center justify-between">
             <Button
               variant="ghost"
@@ -430,17 +432,17 @@ const Photos = () => {
               className="flex items-center gap-2 hover:bg-accent/20"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Portfolio
+              <span className="hidden sm:inline">Back to Portfolio</span>
             </Button>
 
             <div className="text-center">
-              <h1 className="text-2xl font-bold text-gradient">My Personal Gallery</h1>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h1 className="text-xl sm:text-2xl font-bold text-gradient">My Personal Gallery</h1>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                 {allPhotos.length} memories • Scroll to explore
               </p>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <Button
                 onClick={() => setShowUpload(!showUpload)}
                 variant="outline"
@@ -448,12 +450,13 @@ const Photos = () => {
                 className="flex items-center gap-2"
               >
                 <Upload className="w-4 h-4" />
-                Upload Photos
+                <span className="hidden sm:inline">Upload Photos</span>
               </Button>
               <Button
                 onClick={() => navigate("/")}
                 variant="outline"
                 size="sm"
+                className="hidden sm:flex"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
@@ -568,16 +571,22 @@ const Photos = () => {
       </section>
 
       {/* Photo Gallery */}
-      <section className="relative py-20 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative py-12 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-12"
           >
-            {allPhotos.map((photo, index) => (
-              <PhotoCard key={photo.id} photo={photo} index={index} onRemove={removeUploadedPhoto} />
+            {filteredPhotos.map((photo, index) => (
+              <PhotoCard 
+                key={photo.id} 
+                photo={photo} 
+                index={index} 
+                onRemove={removeUploadedPhoto}
+                onClick={() => openPhoto(photo)}
+              />
             ))}
           </motion.div>
         </div>
@@ -609,6 +618,70 @@ const Photos = () => {
           </div>
         </div>
       </motion.footer>
+
+      {/* Photo Modal */}
+      <Dialog open={!!activePhoto} onOpenChange={closePhoto}>
+        <DialogContent className="max-w-5xl w-full h-full max-h-[90vh] p-0 bg-black/95 border-0">
+          {activePhoto && (
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Close Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-4 right-4 z-10 text-white hover:bg-white/20"
+                onClick={closePhoto}
+              >
+                <X className="w-6 h-6" />
+              </Button>
+
+              {/* Navigation Buttons */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/20"
+                onClick={goPrev}
+                disabled={filteredPhotos.length <= 1}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/20"
+                onClick={goNext}
+                disabled={filteredPhotos.length <= 1}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </Button>
+
+              {/* Photo */}
+              <motion.img
+                key={activePhoto.id}
+                src={activePhoto.src}
+                alt={activePhoto.alt}
+                className="max-w-full max-h-full object-contain"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              />
+
+              {/* Photo Info */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <h3 className="text-white text-xl font-semibold mb-2">{activePhoto.title}</h3>
+                <p className="text-white/80 mb-2">{activePhoto.category}</p>
+                {activePhoto.date && (
+                  <p className="text-white/60 text-sm mb-4">{activePhoto.date}</p>
+                )}
+                <div className="flex items-center gap-4 text-white/60 text-sm">
+                  <span>{activeIndex + 1} of {filteredPhotos.length}</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
