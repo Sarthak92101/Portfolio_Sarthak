@@ -24,8 +24,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             {/* Allow trailing slash and nested paths */}
-            <Route path="/gallery" element={<Photos />} />
-            <Route path="/gallery/*" element={<Photos />} />
+            {/* <Route path="/gallery" element={<Photos />} />
+            <Route path="/gallery/*" element={<Photos />} /> */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

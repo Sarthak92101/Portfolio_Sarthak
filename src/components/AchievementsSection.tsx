@@ -13,7 +13,7 @@ const achievements = [
   {
     icon: Award,
     rank: "Rank 6",
-    exam: "STU LEET 2024",
+    exam: "DTU LEET 2024",
     description: "Achieved Rank 6 in STU Lateral Entry Entrance Test, placing among the top performers.",
   },
 ];
