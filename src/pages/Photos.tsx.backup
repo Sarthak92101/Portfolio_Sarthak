@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence, motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+// Temporarily comment out framer-motion imports
+// import { AnimatePresence, motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowLeft, ChevronLeft, ChevronRight, Download, Heart, RotateCw, Search, Share2, X, Camera, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -332,8 +333,9 @@ const PhotoCard = ({ photo, index, onClick }: { photo: Photo; index: number; onC
 
   const rotated90 = Math.abs(rotationDeg % 180) === 90;
   const isLandscape = naturalSize ? naturalSize.w > naturalSize.h : false;
-  // We keep the aspect ratio of the card itself portrait,
-  // and use cover so all images fill the frame consistently.
+  // Card is portrait-shaped; when the (possibly rotated) image is landscape, use `contain`
+  // so it stays fully visible instead of being cropped by `cover`.
+  const shouldContain = naturalSize ? (rotated90 ? !isLandscape : isLandscape) : rotated90;
 
   return (
     <div
@@ -343,16 +345,17 @@ const PhotoCard = ({ photo, index, onClick }: { photo: Photo; index: number; onC
     >
       <div className="relative overflow-hidden rounded-3xl bg-card border border-border card-light shadow-2xl hover:shadow-3xl transition-all duration-500">
         {/* Image */}
-          <div className="relative aspect-[4/5] overflow-hidden">
+          <div className="relative aspect-square overflow-hidden">
           <div className="w-full h-full transition-transform duration-700 group-hover:scale-110">
             <img
               key={photo.src}
               src={photo.src}
               alt={photo.alt}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full"
               style={{
                 transform: `rotate(${rotationDeg}deg)`,
                 transformOrigin: "center",
+                objectFit: shouldContain ? "contain" : "cover"
               }}
               loading="lazy"
               onError={(e) => {
@@ -573,6 +576,7 @@ const Photos = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-background">
+      <h1 style={{color: 'red', fontSize: '24px'}}>Gallery Page Loaded</h1>
       {/* Animated Background */}
       {/* Temporarily comment out animated background
       <motion.div
