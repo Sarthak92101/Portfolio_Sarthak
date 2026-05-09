@@ -48,7 +48,7 @@ const Navbar = () => {
           </li>
           <li>
             <a
-              href="/resume.png"
+              href="/SarthakSharmaResume.pdf"
               download
               className="px-4 py-2 bg-primary text-primary-foreground font-heading text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
             >
