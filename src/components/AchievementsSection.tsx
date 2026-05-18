@@ -49,6 +49,25 @@ const stats = [
   },
 ];
 
+const milestones = [
+  {
+    title: "CodeSoft — Web Development Intern",
+    duration: "Nov 2023 — Dec 2023",
+    bullets: [
+      "Developed responsive web application components and integrated backend APIs.",
+      "Worked on frontend performance and UI responsiveness.",
+    ],
+  },
+  {
+    title: "Unified Mentor — Web Development Intern",
+    duration: "Jun 2025 — Jul 2025",
+    bullets: [
+      "Built reusable React.js components and backend APIs using Node.js and Express.js.",
+      "Worked with MongoDB and Tailwind CSS for full-stack development.",
+    ],
+  },
+];
+
 const AchievementsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -86,6 +105,60 @@ const AchievementsSection = () => {
                 <p className="text-sm text-muted-foreground mt-2">{stat.label}</p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="space-y-4 mb-16">
+            <div>
+              <p className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-3">
+                Internship Highlights
+              </p>
+              <h3 className="font-heading text-3xl font-bold text-foreground">
+                Meaningful full-stack experience
+              </h3>
+              <p className="text-muted-foreground max-w-2xl mt-3">
+                Recent internship work with product-focused frontend and backend contributions,
+                built using React, Tailwind CSS, Node.js, Express, and MongoDB.
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              {milestones.map((milestone) => (
+                <motion.div
+                  key={milestone.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="relative overflow-hidden rounded-3xl border border-primary/10 bg-gradient-to-br from-primary/5 via-card to-card p-6 shadow-[0_30px_60px_rgba(15,23,42,0.08)]"
+                >
+                  <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-primary/10 blur-3xl" />
+                  <div className="relative z-10">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-5">
+                      <div>
+                        <p className="font-heading text-lg font-semibold text-foreground">
+                          {milestone.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {milestone.duration}
+                        </p>
+                      </div>
+                      {/* <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                        Agile product work
+                      </span> */}
+                    </div>
+
+                    <div className="space-y-4">
+                      {milestone.bullets.map((bullet) => (
+                        <div key={bullet} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                          <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                          <span>{bullet}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 

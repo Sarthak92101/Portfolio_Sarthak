@@ -6,13 +6,13 @@ const timeline = [
   {
     icon: GraduationCap,
     title: "Diploma in Computer Engineering",
-    place: "DSEU, Delhi",
+    place: "DSEU, Delhi · 81.2%",
     description: "Built a strong foundation in programming, data structures, and web technologies.",
   },
   {
     icon: Code,
     title: "BTech CSE (4th Year)",
-    place: "MSIT, IPU",
+    place: "MSIT, IPU · 88% till 5th sem",
     description: "Deepening expertise in software engineering, algorithms, and full-stack development.",
   },
   {
