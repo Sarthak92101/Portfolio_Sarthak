@@ -7,7 +7,7 @@ const projects = [
     title: "Resume Builder",
     description:
       "Developed a full-stack resume builder application that allows users to create, preview, and download professional resumes. Implemented dynamic form handling with live preview and PDF export functionality.",
-    tags: ["React", "Node.js", "Express", "MongoDB"],
+    tags: ["React", "Node.js", "Express", "MongoDB", "GenAI"],
     github: "https://github.com/Sarthak92101/ResumeBuilder",
     live: "#",
   },
