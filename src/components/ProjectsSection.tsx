@@ -41,7 +41,7 @@ const projects = [
       "Designed and developed a responsive travel website interface focusing on modern UI/UX principles. Implemented reusable components and optimized layouts for different screen sizes.",
     tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
     github: "https://github.com/Sarthak92101/GlobalTripMaster",
-    live: "#",
+    live: "https://global-trip-master.vercel.app/",
   },
   {
     title: "Mini Projects Collection",
