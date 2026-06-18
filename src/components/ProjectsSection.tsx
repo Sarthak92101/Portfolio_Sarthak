@@ -17,7 +17,7 @@ const projects: Project[] = [
       "Developed a full-stack resume builder application that allows users to create, preview, and download professional resumes. Implemented dynamic form handling with live preview and PDF export functionality.",
     tags: ["React", "Node.js", "Express", "MongoDB", "GenAI"],
     github: "https://github.com/Sarthak92101/ResumeBuilder",
-    live: "https://resume-builder-delta-liart.vercel.app/login",
+    live: "https://resume-builder-delta-liart.vercel.app/",
   },
   {
     title: "Music System",
