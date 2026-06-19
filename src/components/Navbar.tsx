@@ -44,7 +44,7 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </li>
           <li>
             <a
@@ -92,7 +92,7 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="mt-2">
-                <ThemeToggle />
+                {/* <ThemeToggle /> */}
               </li>
               <li>
                 <a
