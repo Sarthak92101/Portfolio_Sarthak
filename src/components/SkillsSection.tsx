@@ -3,6 +3,9 @@ import { useRef } from "react";
 import {
   Code2, FileJson, Palette, Server, Database, GitBranch,
   Layout, Blocks, Terminal, Globe, Wrench, MonitorSmartphone,
+  Braces,
+  FileCode2,
+  Laptop,
 } from "lucide-react";
 
 const skillCategories = [
@@ -13,6 +16,8 @@ const skillCategories = [
       { name: "C++", icon: Code2 },
       { name: "Java", icon: Code2 },
       { name: "Python", icon: Code2 },
+      {name: "JavaScript", icon: Code2},
+      {name: "TypeScript", icon: Code2},
     ],
   },
   {
@@ -24,6 +29,17 @@ const skillCategories = [
       { name: "React", icon: Blocks },
       { name: "Next.js", icon: Layout },
       { name: "Tailwind CSS", icon: MonitorSmartphone },
+    ],
+  },
+   {
+    label: "AI/ML & Data Science",
+    skills: [
+      { name: "Anaconda", icon: Code2 },
+      { name: "Conda", icon: Code2 },
+      { name: "Numpy", icon: Code2 },
+      { name: "Pandas", icon: Code2 },
+      {name: "Matplotlib & Seaborn", icon: Code2},
+      // {name: "TypeScript", icon: Code2},
     ],
   },
   {
@@ -45,7 +61,10 @@ const skillCategories = [
     skills: [
       { name: "Git", icon: GitBranch },
       { name: "GitHub", icon: Code2 },
-      { name: "VS Code", icon: Wrench },
+      { name: "VS Code", icon: Code2 },
+       { name: "Cursor", icon: Braces },
+        { name: "Sublime", icon: FileCode2 },
+         { name: "Intellij", icon: Laptop },
     ],
   },
 ];
