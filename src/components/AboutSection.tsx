@@ -12,7 +12,7 @@ const timeline = [
   {
     icon: Code,
     title: "BTech CSE (4th Year)",
-    place: "MSIT, IPU · 88% till 5th sem",
+    place: "MSIT, IPU · 89% till 6th sem",
     description: "Deepening expertise in software engineering, algorithms, and full-stack development.",
   },
   {
