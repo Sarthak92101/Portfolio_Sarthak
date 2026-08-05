@@ -6,7 +6,7 @@ const timeline = [
   {
     icon: GraduationCap,
     title: "Diploma in Computer Engineering",
-    place: "DSEU, Delhi · 81.2%",
+    place: "DSEU, Delhi · 88.7%",
     description: "Built a strong foundation in programming, data structures, and web technologies.",
   },
   {
