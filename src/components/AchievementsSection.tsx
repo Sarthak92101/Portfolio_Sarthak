@@ -66,6 +66,14 @@ const milestones = [
       "Worked with MongoDB and Tailwind CSS for full-stack development.",
     ],
   },
+  {
+    title: "CodeAlpha — Data Science Intern",
+    duration: "July 2026 — Aug 2026",
+    bullets: [
+      "Built and evaluated ML pipelines for Iris species classification, sales prediction, and unemployment trend analysis using Python and scikit-learn.",
+      "Performed data preprocessing, visualization, and model evaluation to derive actionable insights from real-world datasets.",
+    ],
+  }
 ];
 
 const AchievementsSection = () => {
