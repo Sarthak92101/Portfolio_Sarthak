@@ -20,6 +20,14 @@ const projects: Project[] = [
     live: "https://resume-builder-delta-liart.vercel.app/",
   },
   {
+    title: "Just Rest",
+    description:
+      "Reimagined Nike as its complete opposite — a sleep-therapy and recovery brand. Built a single-page Next.js landing site that inverts Nike's hustle-driven branding into a rest-focused identity, featuring an interactive animated sleep score widget, a phone-frame sleep dashboard mockup, and a scroll-revealed brand manifesto.",
+    tags: ["Next.js", "React", "Tailwind CSS", "next/image"],
+    github: "https://github.com/Sarthak92101/JustRest",
+    live: "https://justrest-sleep.netlify.app",
+  },
+  {
     title: "Music System",
     description:
       "Built an AI-powered music recommendation system that suggests songs based on user preferences and behavior. Integrated third-party APIs to enhance personalization and user experience.",
