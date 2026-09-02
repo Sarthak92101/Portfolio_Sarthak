@@ -73,7 +73,16 @@ const milestones = [
       "Built and evaluated ML pipelines for Iris species classification, sales prediction, and unemployment trend analysis using Python and scikit-learn.",
       "Performed data preprocessing, visualization, and model evaluation to derive actionable insights from real-world datasets.",
     ],
-  }
+  },
+ {
+  title: "Forward — Frontend Development Intern",
+  duration: "Sept 2026 — Present",
+  bullets: [
+    "Working on a Next.js/React-based career guidance platform, focusing on reusable UI components, chat functionality, themes, and responsive interfaces.",
+    "Working with WebSocket-based real-time communication and frontend-backend request flows for AI-powered chat features.",
+    "Debugging and tracing application flows, API responses, WebSocket events, and UI states while exploring and improving the existing frontend architecture."
+  ],
+}
 ];
 
 const AchievementsSection = () => {
