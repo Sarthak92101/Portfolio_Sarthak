@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'blue' | 'purple' | 'green' | 'orange';
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -23,17 +23,13 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first, then system preference
+    // Keep an explicit user choice, otherwise start with the portfolio's dark theme.
     const stored = localStorage.getItem('theme') as Theme;
-    if (stored && ['light', 'dark', 'blue', 'purple', 'green', 'orange'].includes(stored)) {
+    if (stored && ['light', 'dark'].includes(stored)) {
       return stored;
     }
 
-    // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {
